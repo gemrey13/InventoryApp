@@ -1,0 +1,36 @@
+﻿<Window x:Class="InventoryApp.GUI.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryApp.GUI"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="105*"/>
+            <ColumnDefinition Width="191*"/>
+            <ColumnDefinition Width="105*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/bg.jpg"/>
+        </Grid.Background>
+        <Grid Grid.ColumnSpan="3" Margin="209,116,209,114">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#7FFFEDA0" Offset="0.002"/>
+                    <GradientStop Color="#FFFFA585" Offset="0.996"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Label Content="Username" HorizontalAlignment="Left" Margin="52,19,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="15"/>
+            <Label Content="Password" HorizontalAlignment="Left" Margin="52,86,0,0" VerticalAlignment="Top"  FontFamily="Segoe UI Black" FontSize="15" RenderTransformOrigin="0.29,0.419"/>
+            <TextBox HorizontalAlignment="Center" Margin="0,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="266" Height="26" FontFamily="Segoe UI" FontSize="15" Background="#E2F9CF9A"/>
+            <TextBox HorizontalAlignment="Center" Margin="0,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="266" Height="26" FontFamily="Segoe UI" FontSize="15" Background="#E2F9CF9A"/>
+            <Button Content="Button" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.936,0.1" Height="26" Width="266"/>
+        </Grid>
+
+    </Grid>
+</Window>
