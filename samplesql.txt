@@ -1,0 +1,29 @@
+user {
+ID int PK
+lastName vc 64
+firstName vc 64
+email vc 64
+account_type int 
+}
+
+item {
+ID int PK
+name
+image image
+brand vc 150
+description text
+dateAdded datetime
+cost int
+status vc 150
+userID foregnkey
+color
+}
+
+request {
+ID int PK
+employeeID int foregin key
+adminID int Foregin Key
+status vc 150
+description text
+creationDate datetime
+}

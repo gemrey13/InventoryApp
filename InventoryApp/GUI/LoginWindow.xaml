@@ -9,27 +9,90 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="105*"/>
-            <ColumnDefinition Width="191*"/>
-            <ColumnDefinition Width="105*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Images/bg.jpg"/>
-        </Grid.Background>
-        <Grid Grid.ColumnSpan="3" Margin="209,116,209,114">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/bg.jpg"/>
+    </Window.Background>
+    <Grid Margin="0,0,0,0">
+        <Grid Margin="209,96,209,0" Height="238" VerticalAlignment="Top">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#7FFFEDA0" Offset="0.002"/>
                     <GradientStop Color="#FFFFA585" Offset="0.996"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Label Content="Username" HorizontalAlignment="Left" Margin="52,19,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="15"/>
-            <Label Content="Password" HorizontalAlignment="Left" Margin="52,86,0,0" VerticalAlignment="Top"  FontFamily="Segoe UI Black" FontSize="15" RenderTransformOrigin="0.29,0.419"/>
-            <TextBox HorizontalAlignment="Center" Margin="0,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="266" Height="26" FontFamily="Segoe UI" FontSize="15" Background="#E2F9CF9A"/>
-            <TextBox HorizontalAlignment="Center" Margin="0,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="266" Height="26" FontFamily="Segoe UI" FontSize="15" Background="#E2F9CF9A"/>
-            <Button Content="Button" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.936,0.1" Height="26" Width="266"/>
+            <Label Content="Username" HorizontalAlignment="Left" Margin="53,35,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="15">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="#333333"/>
+                        <!-- Default text color -->
+                    </Style>
+                </Label.Style>
+            </Label>
+
+            <Label Content="Password" HorizontalAlignment="Left" Margin="52,106,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="15" RenderTransformOrigin="0.29,0.419">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="#333333"/>
+                        <!-- Default text color -->
+                    </Style>
+                </Label.Style>
+            </Label>
+
+            <TextBox x:Name="textUsername" HorizontalAlignment="Center" Margin="0,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" Height="26" FontFamily="Segoe UI" FontSize="13" Background="#E2F9CF9A" RenderTransformOrigin="0.509,1.866">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Padding" Value="2"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="CaretBrush" Value="Black"/>
+                        <!-- Color of the caret (text cursor) -->
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <PasswordBox x:Name="pwdPassword" HorizontalAlignment="Center" Margin="0,138,0,0" VerticalAlignment="Top" Width="266" Height="26" FontFamily="Segoe UI" FontSize="13" Background="#E2F9CF9A">
+                <PasswordBox.Style>
+                    <Style TargetType="PasswordBox">
+                        <Setter Property="Padding" Value="2"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Background" Value="White"/>
+                    </Style>
+                </PasswordBox.Style>
+            </PasswordBox>
+            <Button Content="Login" HorizontalAlignment="Center" Margin="0,185,0,0" Width="266" Height="29" VerticalAlignment="Top" Click="Login_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#007ACC"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#005F99"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#004266"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
         </Grid>
 
     </Grid>
