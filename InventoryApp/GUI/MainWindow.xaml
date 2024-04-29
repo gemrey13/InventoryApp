@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="631" Width="795"
+        WindowState="Maximized"
+        >
     <Grid>
-        <Label Content="Hello" HorizontalAlignment="Left" Margin="422,185,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hello" HorizontalAlignment="Left" Margin="119,87,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
