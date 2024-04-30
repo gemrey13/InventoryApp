@@ -20,5 +20,54 @@ namespace InventoryApp
         {
             InitializeComponent();
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnVoterReg_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            //registerVoter.Activate();
+            //registerVoter.Show();
+        }
+
+        private void btnHouseKeeping_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtTemp.Text.Trim() == "1")
+            {
+                //RegisterUser userWindow = new RegisterUser();
+                //userWindow.Show();
+                this.Hide();
+            }
+            else
+            {
+                txtUserManagement.Text = "Action not authorized";
+                imgHouseKeeping.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
+            }
+        }
+
+        private void btnElec_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtTemp.Text.Trim() == "1")
+            {
+                // RegisterUser userWindow = new RegisterUser();
+                // userWindow.Show();
+                // this.Hide();
+            }
+            else
+            {
+                txtVotingProper.Text = "Action not authorized";
+                imgVotingProper.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
+            }
+        }
+
+        private void btnCandReg_Click(object sender, RoutedEventArgs e)
+        {
+            //this.hide();
+            //registercandidate candidate = new registercandidate();
+            //candidate.show();
+        }
     }
 }

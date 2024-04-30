@@ -10,14 +10,17 @@
 
   <ItemGroup>
     <None Remove="Images\bg.jpg" />
+    <None Remove="Images\inventory.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\bg.jpg" />
+    <Resource Include="Images\inventory.png" />
   </ItemGroup>
 
 </Project>
