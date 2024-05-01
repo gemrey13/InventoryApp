@@ -9,10 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\analytics.png" />
     <None Remove="Images\bg.jpg" />
     <None Remove="Images\Exit.png" />
     <None Remove="Images\inventory-clipart.png" />
     <None Remove="Images\inventory.png" />
+    <None Remove="Images\maintenance.png" />
     <None Remove="Images\user-mgt.png" />
   </ItemGroup>
 
@@ -22,10 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\analytics.png" />
     <Resource Include="Images\bg.jpg" />
     <Resource Include="Images\exit.png" />
     <Resource Include="Images\inventory-clipart.png" />
     <Resource Include="Images\inventory.png" />
+    <Resource Include="Images\maintenance.png" />
     <Resource Include="Images\user-mgt.png" />
   </ItemGroup>
 

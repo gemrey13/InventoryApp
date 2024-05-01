@@ -88,19 +88,18 @@
                 <TextBlock Text="Time"
                            FontSize="40" Foreground="Black"
                            VerticalAlignment="Top" FontFamily="Segoe UI"
-                           HorizontalAlignment="Center"
+                           HorizontalAlignment="Left"
                            Width="220" Height="50"                           
-                           x:Name="txtTimeDisplay" Margin="0,4,0,0" 
+                           x:Name="txtTimeDisplay" Margin="-12,4,0,0" 
                 />
             </Border>
             <TextBlock Text="Date" VerticalAlignment="Top" Width="270" Height="35"
                        FontSize="25" FontFamily="Segoe UI Light"
-                       x:Name="txtDateDisplay" Margin="187,76,143,0"
+                       x:Name="txtDateDisplay" Margin="181,84,149,0"
             />
-            <Image Source="../images/inventory-clipart.png"
-                   Width="600" Height="581"
+            <Image Source="../images/inventory-clipart.png" Height="548"
                    VerticalAlignment="Top"
-                   Margin="10,148,790,0" Grid.ColumnSpan="2"
+                   Margin="4,164,10,0"
             />
 
             <TextBlock
@@ -109,7 +108,7 @@
                 Margin="185,766,200,74" Height="60"
             ><Run Text="EquipLogic"/><LineBreak/><Run/></TextBlock>
             <TextBlock  
-                Text="Inventory Operations App"
+                Text="Inventory Operations for Technical Gear"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Center"
                 FontSize="25"
@@ -117,15 +116,15 @@
                 Margin="0,833,0,0"
                 x:Name="txtAuthors"                
             />
-            <TextBlock Text="Temporary"
+            <TextBlock Text="EquipLogic"
                        x:Name="txtTemp"                       
                        HorizontalAlignment="Center" Height="30"
-                       VerticalAlignment="Top"
+                       VerticalAlignment="Top" Margin="0,4,0,0"
                        
             />
             <Border Grid.Column="1"
                     BorderBrush="#2f6deb" BorderThickness="5"
-                    Margin="10" CornerRadius="30">
+                    Margin="10,10,10,10" CornerRadius="30">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" 
                             VerticalAlignment="Top" Margin="10">
@@ -139,7 +138,7 @@
                             <Image Source="../images/inventory.png" Width="100" Height="100"/>
                         </Button>
 
-                        <TextBlock Text="Inventory" 
+                        <TextBlock Text="Inventory Management" 
                                FontSize="50"
                                FontFamily="Segoe UI Light"
                                VerticalAlignment="Center"
@@ -154,10 +153,10 @@
                                 BorderThickness="5"
                                 Click="btnAnalytics_Click"
                                 Width="130" Height="130">
-                            <Image Source="../images/inventory.png" Width="100" Height="100"/>
+                            <Image Source="../images/analytics.png" Width="100" Height="100"/>
                         </Button>
 
-                        <TextBlock Text="Analytics" 
+                        <TextBlock Text="Data Insights" 
                             FontSize="50"
                             FontFamily="Segoe UI Light"                            
                             VerticalAlignment="Center"
@@ -172,7 +171,7 @@
                                 BorderThickness="5"
                                 Click="btnAccountHistory_Click"
                                 Width="130" Height="130">
-                            <Image Source="../images/inventory.png" Width="100" Height="100"
+                            <Image Source="../images/maintenance.png" Width="100" Height="100"
                                        x:Name="imgVotingProper"/>
                         </Button>
 

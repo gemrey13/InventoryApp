@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace InventoryApp
 {
@@ -16,9 +17,23 @@ namespace InventoryApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer clockTimer = new DispatcherTimer();
+
         public MainWindow()
         {
             InitializeComponent();
+            // format date and time
+            txtDateDisplay.Text = DateTime.Now.ToString("dddd MMMM dd, yyyy");
+            clockTimer.Interval = TimeSpan.FromSeconds(1);
+            clockTimer.Tick += ClockTimerEngine;
+            clockTimer.Start();
+
+
+        }
+
+        private void ClockTimerEngine(object? sender, EventArgs e)
+        {
+            txtTimeDisplay.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
