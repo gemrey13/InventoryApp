@@ -26,46 +26,64 @@ namespace InventoryApp
             Application.Current.Shutdown();
         }
 
-        private void btnVoterReg_Click(object sender, RoutedEventArgs e)
+        private void btnInventory_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+            MessageBox.Show("In the inventory");
+            Application.Current.Shutdown();
+
             //registerVoter.Activate();
             //registerVoter.Show();
         }
 
-        private void btnHouseKeeping_Click(object sender, RoutedEventArgs e)
+        private void btnUserManagement_Click(object sender, RoutedEventArgs e)
         {
-            if (txtTemp.Text.Trim() == "1")
-            {
-                //RegisterUser userWindow = new RegisterUser();
-                //userWindow.Show();
-                this.Hide();
-            }
-            else
-            {
-                txtUserManagement.Text = "Action not authorized";
-                imgHouseKeeping.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
-            }
+            this.Hide();
+            MessageBox.Show("In the User Management");
+            Application.Current.Shutdown();
+            //if (txtTemp.Text.Trim() == "1")
+            //{
+            //    this.Hide();
+            //    MessageBox.Show("In the User Management");
+            //    Application.Current.Shutdown();
+            //    RegisterUser userWindow = new RegisterUser();
+            //    userWindow.Show();
+            //}
+            //else
+            //{
+            //    txtUserManagement.Text = "Action not authorized";
+            //    imgHouseKeeping.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
+            //}
         }
 
-        private void btnElec_Click(object sender, RoutedEventArgs e)
+        private void btnAccountHistory_Click(object sender, RoutedEventArgs e)
         {
-            if (txtTemp.Text.Trim() == "1")
-            {
+            this.Hide();
+            MessageBox.Show("In the ACcount History");
+            Application.Current.Shutdown();
+
+            //if (txtTemp.Text.Trim() == "1")
+            //{
+            //    this.Hide();
+            //    MessageBox.Show("In the ACcount History");
+            //    Application.Current.Shutdown();
                 // RegisterUser userWindow = new RegisterUser();
                 // userWindow.Show();
                 // this.Hide();
-            }
-            else
-            {
-                txtVotingProper.Text = "Action not authorized";
-                imgVotingProper.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
-            }
+            //}
+            //else
+            //{
+            //    txtVotingProper.Text = "Action not authorized";
+            //    imgVotingProper.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
+            //}
         }
 
-        private void btnCandReg_Click(object sender, RoutedEventArgs e)
+        private void btnAnalytics_Click(object sender, RoutedEventArgs e)
         {
-            //this.hide();
+            this.Hide();
+            MessageBox.Show("In the Analytics");
+            Application.Current.Shutdown();
+
             //registercandidate candidate = new registercandidate();
             //candidate.show();
         }

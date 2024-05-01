@@ -87,34 +87,34 @@
 
                 <TextBlock Text="Time"
                            FontSize="40" Foreground="Black"
-                           VerticalAlignment="Center" FontFamily="Segoe UI"
+                           VerticalAlignment="Top" FontFamily="Segoe UI"
                            HorizontalAlignment="Center"
                            Width="220" Height="50"                           
-                           x:Name="txtTimeDisplay" 
+                           x:Name="txtTimeDisplay" Margin="0,4,0,0" 
                 />
             </Border>
             <TextBlock Text="Date" VerticalAlignment="Top" Width="270" Height="35"
                        FontSize="25" FontFamily="Segoe UI Light"
-                       x:Name="txtDateDisplay" Margin="40 70 0 0"
+                       x:Name="txtDateDisplay" Margin="187,76,143,0"
             />
-            <Image Source="../images/inventory.png"
-                   Width="600" Height="700"
+            <Image Source="../images/inventory-clipart.png"
+                   Width="600" Height="581"
                    VerticalAlignment="Top"
-                   Margin="10 120 0 0"
+                   Margin="10,148,790,0" Grid.ColumnSpan="2"
             />
 
-            <TextBlock Text="Student Election Software"
-                FontSize="44" Width="500"
+            <TextBlock
+                FontSize="44"
                 FontFamily="Segoe UI Light"
-                Margin="70 730 0 0" Height="60"
-            />
+                Margin="185,766,200,74" Height="60"
+            ><Run Text="EquipLogic"/><LineBreak/><Run/></TextBlock>
             <TextBlock  
-                Text="by: 3rd Year Wesleyan I.T. 2024"
-                VerticalAlignment="Bottom"
+                Text="Inventory Operations App"
+                VerticalAlignment="Top"
                 HorizontalAlignment="Center"
                 FontSize="25"
                 FontFamily="Segoe UI Light"
-                Margin="0 0 0 20"
+                Margin="0,833,0,0"
                 x:Name="txtAuthors"                
             />
             <TextBlock Text="Temporary"
@@ -130,8 +130,8 @@
                     <StackPanel Orientation="Horizontal" 
                             VerticalAlignment="Top" Margin="10">
                         <Button Style="{DynamicResource RoundedButton}" 
-                                x:Name="btnVoterReg"
-                                Click="btnVoterReg_Click"
+                                x:Name="btnInventory"
+                                Click="btnInventory_Click"
                                 Cursor="Hand" Background="Transparent"
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
@@ -139,7 +139,7 @@
                             <Image Source="../images/inventory.png" Width="100" Height="100"/>
                         </Button>
 
-                        <TextBlock Text="Voter Registration" 
+                        <TextBlock Text="Inventory" 
                                FontSize="50"
                                FontFamily="Segoe UI Light"
                                VerticalAlignment="Center"
@@ -148,16 +148,16 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" 
                             VerticalAlignment="Top" Margin="10 10 0 0">
-                        <Button x:Name="btnCandReg" Style="{DynamicResource RoundedButton}"
+                        <Button x:Name="btnAnalytics" Style="{DynamicResource RoundedButton}"
                                 Cursor="Hand" Background="Transparent"
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
-                                Click="btnCandReg_Click"
+                                Click="btnAnalytics_Click"
                                 Width="130" Height="130">
                             <Image Source="../images/inventory.png" Width="100" Height="100"/>
                         </Button>
 
-                        <TextBlock Text="Candidate Registration" 
+                        <TextBlock Text="Analytics" 
                             FontSize="50"
                             FontFamily="Segoe UI Light"                            
                             VerticalAlignment="Center"
@@ -166,17 +166,17 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" 
                             VerticalAlignment="Top" Margin="10 20 0 0">
-                        <Button x:Name="btnElec" Style="{DynamicResource RoundedButton}"
+                        <Button x:Name="btnAccountHistory" Style="{DynamicResource RoundedButton}"
                                 Cursor="Hand" Background="Transparent"
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
-                                Click="btnElec_Click"
+                                Click="btnAccountHistory_Click"
                                 Width="130" Height="130">
                             <Image Source="../images/inventory.png" Width="100" Height="100"
                                        x:Name="imgVotingProper"/>
                         </Button>
 
-                        <TextBlock Text="Voting Proper" 
+                        <TextBlock Text="Account History" 
                             FontSize="50"
                             FontFamily="Segoe UI Light"
                             VerticalAlignment="Center"
@@ -187,14 +187,14 @@
 
                     <StackPanel Orientation="Horizontal" 
                             VerticalAlignment="Top" Margin="10 20 0 0">
-                        <Button x:Name="btnHouseKeeping" 
+                        <Button x:Name="btnUserManagement" 
                                 Style="{DynamicResource RoundedButton}"
                                 Cursor="Hand" Background="Transparent"
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
-                                Click="btnHouseKeeping_Click"
+                                Click="btnUserManagement_Click"
                                 Width="130" Height="130">
-                            <Image Source="../images/inventory.png" Width="100" Height="100" x:Name="imgHouseKeeping"/>
+                            <Image Source="../images/user-mgt.png" Width="100" Height="100" x:Name="imgHouseKeeping"/>
                         </Button>
 
                         <TextBlock Text="User Management" 
@@ -213,7 +213,7 @@
                             BorderBrush="#2f6deb"
                             BorderThickness="5"
                             Width="130" Height="130">
-                            <Image Source="../images/inventory.png" Width="100" Height="100"/>
+                            <Image Source="../images/exit.png" Width="100" Height="100"/>
                         </Button>
 
                         <TextBlock Text="Exit System" 
