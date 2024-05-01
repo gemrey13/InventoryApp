@@ -27,8 +27,6 @@ namespace InventoryApp
             clockTimer.Interval = TimeSpan.FromSeconds(1);
             clockTimer.Tick += ClockTimerEngine;
             clockTimer.Start();
-
-
         }
 
         private void ClockTimerEngine(object? sender, EventArgs e)
@@ -56,19 +54,6 @@ namespace InventoryApp
             this.Hide();
             MessageBox.Show("In the User Management");
             Application.Current.Shutdown();
-            //if (txtTemp.Text.Trim() == "1")
-            //{
-            //    this.Hide();
-            //    MessageBox.Show("In the User Management");
-            //    Application.Current.Shutdown();
-            //    RegisterUser userWindow = new RegisterUser();
-            //    userWindow.Show();
-            //}
-            //else
-            //{
-            //    txtUserManagement.Text = "Action not authorized";
-            //    imgHouseKeeping.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
-            //}
         }
 
         private void btnAccountHistory_Click(object sender, RoutedEventArgs e)
@@ -101,6 +86,13 @@ namespace InventoryApp
 
             //registercandidate candidate = new registercandidate();
             //candidate.show();
+        }
+
+        private void btnRequest_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            MessageBox.Show("In the Requested item");
+            Application.Current.Shutdown();
         }
     }
 }

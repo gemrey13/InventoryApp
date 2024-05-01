@@ -10,7 +10,7 @@
         AllowsTransparency="True"
                 Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        Title="Student Election V1" Height="900" Width="1400">
+        Title="EquipLogic Menu" Height="900" Width="1400">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -126,16 +126,15 @@
                     BorderBrush="#2f6deb" BorderThickness="5"
                     Margin="10,10,10,10" CornerRadius="30">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" 
-                            VerticalAlignment="Top" Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="10">
                         <Button Style="{DynamicResource RoundedButton}" 
                                 x:Name="btnInventory"
                                 Click="btnInventory_Click"
                                 Cursor="Hand" Background="Transparent"
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
-                            Width="130" Height="130">
-                            <Image Source="../images/inventory.png" Width="100" Height="100"/>
+                            Width="110" Height="110">
+                            <Image Source="../images/inventory.png" Width="80" Height="80"/>
                         </Button>
 
                         <TextBlock Text="Inventory Management" 
@@ -145,6 +144,27 @@
                                Margin="30 0 0 0"
                         />
                     </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" 
+                         VerticalAlignment="Top" Margin="10">
+                        <Button Style="{DynamicResource RoundedButton}" 
+            x:Name="btnRequest"
+            Click="btnRequest_Click"
+            Cursor="Hand" Background="Transparent"
+            BorderBrush="#2f6deb"
+            BorderThickness="5"
+        Width="110" Height="110">
+                            <Image Source="../images/request.png" Width="80" Height="80"/>
+                        </Button>
+
+                        <TextBlock Text="Requested item" 
+           FontSize="50"
+           FontFamily="Segoe UI Light"
+           VerticalAlignment="Center"
+           Margin="30 0 0 0"
+    />
+                    </StackPanel>
+
                     <StackPanel Orientation="Horizontal" 
                             VerticalAlignment="Top" Margin="10 10 0 0">
                         <Button x:Name="btnAnalytics" Style="{DynamicResource RoundedButton}"
@@ -152,8 +172,8 @@
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
                                 Click="btnAnalytics_Click"
-                                Width="130" Height="130">
-                            <Image Source="../images/analytics.png" Width="100" Height="100"/>
+                                Width="110" Height="110">
+                            <Image Source="../images/analytics.png" Width="80" Height="80"/>
                         </Button>
 
                         <TextBlock Text="Data Insights" 
@@ -170,8 +190,8 @@
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
                                 Click="btnAccountHistory_Click"
-                                Width="130" Height="130">
-                            <Image Source="../images/maintenance.png" Width="100" Height="100"
+                                Width="110" Height="110">
+                            <Image Source="../images/maintenance.png" Width="80" Height="80"
                                        x:Name="imgVotingProper"/>
                         </Button>
 
@@ -192,8 +212,8 @@
                                 BorderBrush="#2f6deb"
                                 BorderThickness="5"
                                 Click="btnUserManagement_Click"
-                                Width="130" Height="130">
-                            <Image Source="../images/user-mgt.png" Width="100" Height="100" x:Name="imgHouseKeeping"/>
+                                Width="110" Height="110">
+                            <Image Source="../images/user-mgt.png" Width="80" Height="80" x:Name="imgHouseKeeping"/>
                         </Button>
 
                         <TextBlock Text="User Management" 
@@ -211,8 +231,8 @@
                             Click="btnExit_Click"
                             BorderBrush="#2f6deb"
                             BorderThickness="5"
-                            Width="130" Height="130">
-                            <Image Source="../images/exit.png" Width="100" Height="100"/>
+                            Width="110" Height="110">
+                            <Image Source="../images/exit.png" Width="80" Height="80"/>
                         </Button>
 
                         <TextBlock Text="Exit System" 
