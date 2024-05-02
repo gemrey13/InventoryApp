@@ -23,5 +23,7 @@ namespace InventoryApp.GUI
         {
             InitializeComponent();
         }
+
+ 
     }
 }
