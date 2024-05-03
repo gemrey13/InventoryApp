@@ -191,10 +191,11 @@
             <TextBox
                 x:Name="txtItemName"
                 Height="35"
-                Margin="39,72,682,143"
+                Margin="39,72,604,143"
                 FontSize="25"
                 FontWeight="Bold"
-                Text="{Binding ElementName=votersList, Path=SelectedItem.middlename, Mode=OneWay}" />
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.middlename, Mode=OneWay}" />
+
             <TextBlock
                 Margin="0,132,812,88"
                 HorizontalAlignment="Right"
@@ -204,10 +205,10 @@
             <TextBox
                 x:Name="txtBrand"
                 Height="35"
-                Margin="39,162,682,52"
+                Margin="39,162,604,52"
                 FontSize="25"
                 FontWeight="Bold"
-                Text="{Binding ElementName=votersList, Path=SelectedItem.middlename, Mode=OneWay}" />
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.middlename, Mode=OneWay}" />
 
             <TextBlock
                 Margin="0,216,818,4"
@@ -219,10 +220,107 @@
                 x:Name="intCost"
                 Grid.Row="1"
                 Height="35"
-                Margin="39,2,682,63"
+                Margin="39,2,604,63"
                 FontSize="25"
                 FontWeight="Bold"
-                Text="{Binding ElementName=votersList, Path=SelectedItem.middlename, Mode=OneWay}" />
+                PreviewTextInput="intCost_PreviewTextInput"
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.middlename, Mode=OneWay}" />
+
+            <TextBlock
+                Margin="0,41,509,179"
+                HorizontalAlignment="Right"
+                FontFamily="Segoe UI Light"
+                FontSize="20"
+                Text="Status" />
+            <ComboBox
+                x:Name="txtStatus"
+                Width="200"
+                Height="35"
+                Margin="340,71,0,144"
+                HorizontalAlignment="Left"
+                Background="White"
+                BorderBrush="White"
+                FontSize="20"
+                FontWeight="Bold"
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.course, Mode=OneWay}">
+                <ComboBoxItem>Excellent</ComboBoxItem>
+                <ComboBoxItem>Good</ComboBoxItem>
+                <ComboBoxItem>Substandard</ComboBoxItem>
+            </ComboBox>
+
+
+            <TextBlock
+                Margin="0,132,514,88"
+                HorizontalAlignment="Right"
+                FontFamily="Segoe UI Light"
+                FontSize="20"
+                Text="Color" />
+            <ComboBox
+                x:Name="txtColor"
+                Width="200"
+                Height="35"
+                Margin="340,162,0,52"
+                HorizontalAlignment="Left"
+                Background="White"
+                FontSize="20"
+                FontWeight="Bold"
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.course, Mode=OneWay}">
+                <ComboBoxItem>No Color</ComboBoxItem>
+                <ComboBoxItem>Red</ComboBoxItem>
+                <ComboBoxItem>Blue</ComboBoxItem>
+                <ComboBoxItem>Yellow</ComboBoxItem>
+                <ComboBoxItem>Green</ComboBoxItem>
+            </ComboBox>
+
+            <Button
+                x:Name="uploadImage"
+                Grid.RowSpan="2"
+                Margin="340,248,355,63"
+                Background="#007ACC"
+                BorderThickness="0"
+                Click="uploadImage_Click"
+                Foreground="White">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Margin="0,0,5,0"
+                            Source="../images/upload-image.png" />
+                        <TextBlock Text="Upload an Image" />
+                    </StackPanel>
+                </Button.Content>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBlock
+                Margin="580,41,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontFamily="Segoe UI Light"
+                FontSize="20"
+                Text="Description" />
+
+            <TextBox
+                x:Name="txtDescription"
+                Grid.RowSpan="2"
+                Width="265"
+                Height="219"
+                Margin="580,68,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                AcceptsReturn="True"
+                FontSize="16"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                TextWrapping="Wrap" />
+
 
 
 
@@ -294,6 +392,7 @@
                             Background="Transparent"
                             BorderBrush="#2f6deb"
                             BorderThickness="5"
+                            Click="Button_Click"
                             Cursor="Hand">
                             <Image
                                 Width="50"
@@ -336,7 +435,7 @@
                 </StackPanel>
             </Border>
             <DataGrid
-                x:Name="votersList"
+                x:Name="itemsList"
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 Margin="20,10,20,10"

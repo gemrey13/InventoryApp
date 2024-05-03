@@ -20,6 +20,7 @@
     <None Remove="Images\request.png" />
     <None Remove="Images\search-icon.png" />
     <None Remove="Images\update-entry.png" />
+    <None Remove="Images\upload-image.png" />
     <None Remove="Images\user-mgt.png" />
   </ItemGroup>
 
@@ -40,6 +41,7 @@
     <Resource Include="Images\request.png" />
     <Resource Include="Images\search-icon.png" />
     <Resource Include="Images\update-entry.png" />
+    <Resource Include="Images\upload-image.png" />
     <Resource Include="Images\user-mgt.png" />
   </ItemGroup>
 
