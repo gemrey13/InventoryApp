@@ -194,7 +194,7 @@
                 Margin="39,72,604,143"
                 FontSize="25"
                 FontWeight="Bold"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.middlename, Mode=OneWay}" />
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.name, Mode=OneWay}" />
 
             <TextBlock
                 Margin="0,132,812,88"
@@ -208,7 +208,7 @@
                 Margin="39,162,604,52"
                 FontSize="25"
                 FontWeight="Bold"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.middlename, Mode=OneWay}" />
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.brand, Mode=OneWay}" />
 
             <TextBlock
                 Margin="0,216,818,4"
@@ -224,7 +224,7 @@
                 FontSize="25"
                 FontWeight="Bold"
                 PreviewTextInput="intCost_PreviewTextInput"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.middlename, Mode=OneWay}" />
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.cost, Mode=OneWay}" />
 
             <TextBlock
                 Margin="0,41,509,179"
@@ -242,7 +242,7 @@
                 BorderBrush="White"
                 FontSize="20"
                 FontWeight="Bold"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.course, Mode=OneWay}">
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.status, Mode=OneWay}">
                 <ComboBoxItem>Excellent</ComboBoxItem>
                 <ComboBoxItem>Good</ComboBoxItem>
                 <ComboBoxItem>Substandard</ComboBoxItem>
@@ -250,21 +250,22 @@
 
 
             <TextBlock
-                Margin="0,132,514,88"
+                Margin="0,132,484,88"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe UI Light"
                 FontSize="20"
-                Text="Color" />
+                Text="Highlight" />
             <ComboBox
-                x:Name="txtColor"
+                x:Name="txtHighlight"
                 Width="200"
                 Height="35"
                 Margin="340,162,0,52"
                 HorizontalAlignment="Left"
                 Background="White"
+                BorderBrush="White"
                 FontSize="20"
                 FontWeight="Bold"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.course, Mode=OneWay}">
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.highlight, Mode=OneWay}">
                 <ComboBoxItem>No Color</ComboBoxItem>
                 <ComboBoxItem>Red</ComboBoxItem>
                 <ComboBoxItem>Blue</ComboBoxItem>
@@ -272,32 +273,6 @@
                 <ComboBoxItem>Green</ComboBoxItem>
             </ComboBox>
 
-            <Button
-                x:Name="uploadImage"
-                Grid.RowSpan="2"
-                Margin="340,248,355,63"
-                Background="#007ACC"
-                BorderThickness="0"
-                Click="uploadImage_Click"
-                Foreground="White">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            Margin="0,0,5,0"
-                            Source="../images/upload-image.png" />
-                        <TextBlock Text="Upload an Image" />
-                    </StackPanel>
-                </Button.Content>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
 
             <TextBlock
                 Margin="580,41,0,0"
@@ -306,7 +281,6 @@
                 FontFamily="Segoe UI Light"
                 FontSize="20"
                 Text="Description" />
-
             <TextBox
                 x:Name="txtDescription"
                 Grid.RowSpan="2"
@@ -319,9 +293,8 @@
                 FontSize="16"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                Text="{Binding ElementName=itemsList, Path=SelectedItem.description, Mode=OneWay}"
                 TextWrapping="Wrap" />
-
-
 
 
             <Border
@@ -343,7 +316,6 @@
                             BorderThickness="5"
                             Click="btnAdd_Click"
                             Cursor="Hand">
-
                             <Image
                                 Width="50"
                                 Height="50"
@@ -405,7 +377,7 @@
                         <TextBlock
                             Height="20"
                             HorizontalAlignment="Center"
-                            Text="Search Criteria" />
+                            Text="Search Item Name or Color" />
                         <TextBox
                             x:Name="txtSearch"
                             Width="400"
@@ -440,6 +412,7 @@
                 Grid.ColumnSpan="2"
                 Margin="20,10,20,10"
                 AlternatingRowBackground="#FFABD3F5"
+                AutoGenerateColumns="False"
                 BorderBrush="#2f6deb"
                 BorderThickness="3"
                 CanUserReorderColumns="False"
@@ -452,7 +425,70 @@
                 HeadersVisibility="All"
                 HorizontalGridLinesBrush="Gray"
                 IsReadOnly="True"
-                VerticalGridLinesBrush="Gray" />
+                ItemsSource="{Binding}"
+                VerticalGridLinesBrush="Gray">
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding highlight}" Value="No Color">
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Red">
+                                <Setter Property="Background" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Blue">
+                                <Setter Property="Background" Value="Blue" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Yellow">
+                                <Setter Property="Background" Value="Yellow" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Green">
+                                <Setter Property="Background" Value="Green" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="30"
+                        Binding="{Binding id}"
+                        Header="ID" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding name}"
+                        Header="Name" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding brand}"
+                        Header="Brand" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding highlight}"
+                        Header="Highlight" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding status}"
+                        Header="Status" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding dateAdded}"
+                        Header="Date Added" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding cost}"
+                        Header="Cost" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding description}"
+                        Header="Description" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+
             <TextBlock
                 Grid.Column="1"
                 Height="35"

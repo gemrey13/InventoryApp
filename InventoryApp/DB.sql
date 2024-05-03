@@ -11,14 +11,13 @@ CREATE TABLE user_account (
 CREATE TABLE item (
     ID INT PRIMARY KEY IDENTITY,
     name nchar(10),
-    image IMAGE NULL,
     brand nchar(10),
     description nvarchar(100),
     dateAdded DATETIME,
     cost INT,
-    [status] nvarchar(10),
+    [status] nvarchar(64),
     userID INT NULL,
-    color nchar(10),
+    [highlight] nvarchar(64),
     FOREIGN KEY (userID) REFERENCES [user_account](ID)
 );
 
