@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using System.Data;
 using System.Collections;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace InventoryApp.GUI
 {
@@ -27,6 +28,8 @@ namespace InventoryApp.GUI
     public partial class ItemWindow : Window
     {
         private readonly DatabaseManager _databaseManager;
+        public string SelectedHighlight { get; set; }
+
         public ItemWindow()
         {
             InitializeComponent();
@@ -49,7 +52,7 @@ namespace InventoryApp.GUI
                     command.Parameters.AddWithValue("@Name", itemName);
                     command.Parameters.AddWithValue("@Brand", brand);
                     command.Parameters.AddWithValue("@Description", description);
-                    command.Parameters.AddWithValue("@DateAdded", DateTime.Now); // Assuming current date/time
+                    command.Parameters.AddWithValue("@DateAdded", DateTime.Now); 
                     command.Parameters.AddWithValue("@Cost", cost);
                     command.Parameters.AddWithValue("@Status", status);
                     command.Parameters.AddWithValue("@Highlight", highlight);
@@ -108,11 +111,9 @@ namespace InventoryApp.GUI
         {
             if (itemsList.SelectedItem != null)
             {
-                // Get the selected DataRowView from the DataGrid
                 DataRowView selectedItem = (DataRowView)itemsList.SelectedItem;
 
-                // Get the values of the item's properties from the TextBoxes and ComboBox
-                int id = Convert.ToInt32(selectedItem["id"]); // Assuming 'id' is the primary key
+                int id = Convert.ToInt32(selectedItem["id"]); 
                 string itemName = txtItemName.Text;
                 string brand = txtBrand.Text;
                 string description = txtDescription.Text;
@@ -120,12 +121,10 @@ namespace InventoryApp.GUI
                 string status = txtStatus.Text;
                 string highlight = txtHighlight.Text;
 
-                // Construct the UPDATE query
                 string query = @"UPDATE item
                          SET name = @name, brand = @brand, highlight = @highlight, status = @status, cost = @cost, description = @description
                          WHERE id = @id";
 
-                // Execute the UPDATE query
                 using (SqlConnection connection = _databaseManager.GetConnection())
                 {
                     SqlCommand command = new SqlCommand(query, connection);
@@ -215,14 +214,13 @@ namespace InventoryApp.GUI
             // Ensure that searchKeyword is not empty
             if (!string.IsNullOrEmpty(searchKeyword))
             {
-                // Perform the search based on the searchKeyword
                 DataTable dt = new DataTable();
                 using (SqlConnection connection = _databaseManager.GetConnection())
                 {
                     string query = @"SELECT id, name, brand, highlight, status, dateAdded, cost, description 
                              FROM item
                              WHERE name COLLATE Latin1_General_CS_AS LIKE @keyword
-                                OR highlight COLLATE Latin1_General_CS_AS LIKE @keyword";
+                                OR brand COLLATE Latin1_General_CS_AS LIKE @keyword";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@keyword", "%" + searchKeyword + "%");
 
@@ -231,17 +229,41 @@ namespace InventoryApp.GUI
                     adapter.Fill(dt);
                 }
 
-                // Update the DataGrid with the search results
                 itemsList.ItemsSource = dt.DefaultView;
             }
             else
             {
-                // If the search keyword is empty, show all items
                 showData();
             }
         }
 
+        private void highlightFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string? selectedHighlight = (highlightFilter.SelectedItem as ComboBoxItem)?.Content?.ToString();
 
+                DataTable dt = new DataTable();
+                using (SqlConnection connection = _databaseManager.GetConnection())
+                {
+                    string query = @"SELECT id, name, brand, highlight, status, dateAdded, cost, description 
+                             FROM item
+                             WHERE (@selectedHighlight IS NULL OR highlight = @selectedHighlight)";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@selectedHighlight", string.IsNullOrEmpty(selectedHighlight) ? DBNull.Value : (object)selectedHighlight);
+
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dt);
+                }
+
+                itemsList.ItemsSource = dt.DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while filtering items: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
 
         private void intCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -249,14 +271,17 @@ namespace InventoryApp.GUI
             e.Handled = !IsTextNumeric(e.Text);
         }
 
-        // Helper method to check if a string contains only numeric characters
         private bool IsTextNumeric(string text)
         {
             Regex regex = new Regex("[^0-9]+");
             return !regex.IsMatch(text);
         }
 
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            showData();
+            highlightFilter.SelectedIndex = -1;
+            txtSearch.Clear();
+        }
     }
-
-   
 }

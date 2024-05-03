@@ -297,6 +297,71 @@
                 TextWrapping="Wrap" />
 
 
+            <!--  Add filter controls  -->
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="39,96,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontFamily="Segoe UI Light"
+                FontSize="20"
+                Text="Filter by Highlight:" />
+            <ComboBox
+                x:Name="highlightFilter"
+                Grid.Row="2"
+                Height="35"
+                Margin="39,29,659,336"
+                Background="White"
+                BorderBrush="White"
+                FontSize="20"
+                FontWeight="Bold"
+                SelectedItem="{Binding SelectedHighlight, Mode=TwoWay}"
+                SelectionChanged="highlightFilter_SelectionChanged">
+                <ComboBoxItem Content="No Color" />
+                <ComboBoxItem Content="Red" />
+                <ComboBoxItem Content="Blue" />
+                <ComboBoxItem Content="Yellow" />
+                <ComboBoxItem Content="Green" />
+            </ComboBox>
+
+            <Button
+                Grid.RowSpan="2"
+                Margin="341,245,359,65"
+                Click="RefreshButton_Click"
+                Content="Refresh"
+                Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#007ACC" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="BorderBrush" Value="{x:Null}" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#005C99" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+
+
             <Border
                 Grid.Row="3"
                 Grid.ColumnSpan="2"
@@ -377,7 +442,7 @@
                         <TextBlock
                             Height="20"
                             HorizontalAlignment="Center"
-                            Text="Search Item Name or Color" />
+                            Text="Search Item Name or Brand Name" />
                         <TextBox
                             x:Name="txtSearch"
                             Width="400"
@@ -410,8 +475,7 @@
                 x:Name="itemsList"
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
-                Margin="20,10,20,10"
-                AlternatingRowBackground="#FFABD3F5"
+                Margin="20,80,20,10"
                 AutoGenerateColumns="False"
                 BorderBrush="#2f6deb"
                 BorderThickness="3"
