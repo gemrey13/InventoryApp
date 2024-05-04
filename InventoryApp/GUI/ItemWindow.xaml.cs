@@ -265,6 +265,22 @@ namespace InventoryApp.GUI
             }
         }
 
+        private void SortByName_Click(object sender, RoutedEventArgs e)
+        {
+            if (itemsList.ItemsSource is DataView dataView)
+            {
+                dataView.Sort = "name ASC";
+            }
+        }
+
+        private void SortByDate_Click(object sender, RoutedEventArgs e)
+        {
+            if (itemsList.ItemsSource is DataView dataView)
+            {
+                dataView.Sort = "dateAdded ASC";
+            }
+        }
+
 
         private void intCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -276,6 +292,8 @@ namespace InventoryApp.GUI
             Regex regex = new Regex("[^0-9]+");
             return !regex.IsMatch(text);
         }
+
+        
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
