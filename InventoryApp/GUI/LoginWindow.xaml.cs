@@ -1,33 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using InventoryApp.DAL;
+using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using InventoryApp.DAL;
 
 namespace InventoryApp.GUI
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
-        MainWindow mainWindow = new MainWindow();
-
+        private MainWindow mainWindow;
         private readonly DatabaseManager _databaseManager;
+        private DatabaseHelper databaseHelper;
+
         public LoginWindow()
         {
             InitializeComponent();
             _databaseManager = new DatabaseManager();
+            databaseHelper = new DatabaseHelper();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -35,10 +23,11 @@ namespace InventoryApp.GUI
             string username = textUsername.Text;
             string password = pwdPassword.Password;
 
-            if (AuthenticateUser(username, password))
+            if (AuthenticateUser(username, password, out User currentUser))
             {
+                InsertLoginHistory(currentUser.Username);
+                mainWindow = new MainWindow(currentUser);
                 this.Close();
-
                 mainWindow.Show();
             }
             else
@@ -47,22 +36,64 @@ namespace InventoryApp.GUI
             }
         }
 
-        private bool AuthenticateUser(string username, string password)
+        private bool AuthenticateUser(string username, string password, out User user)
         {
             using (SqlConnection connection = _databaseManager.GetConnection())
             {
-                string query = "SELECT COUNT(1) FROM [user_account] WHERE [username] = @Username AND [password] = @Password";
+                string query = "SELECT ID, lastName, firstName, email, account_type FROM user_account WHERE username = @Username AND [password] = @Password";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
 
                     connection.Open();
-                    int count = (int)command.ExecuteScalar();
+                    SqlDataReader reader = command.ExecuteReader();
 
-                    return count > 0;
+                    if (reader.Read())
+                    {
+                        user = new User
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            LastName = reader["lastName"].ToString(),
+                            FirstName = reader["firstName"].ToString(),
+                            Email = reader["email"].ToString(),
+                            AccountType = Convert.ToInt32(reader["account_type"]),
+                            Username = username
+                        };
+                        reader.Close();
+                        return true;
+                    }
+                }
+            }
+            user = null;
+            return false;
+        }
+        private void InsertLoginHistory(string username)
+        {
+            using (SqlConnection connection = _databaseManager.GetConnection())
+            {
+                string query = "INSERT INTO account_history (userID, action, actionDate) VALUES (@UserID, @Action, @ActionDate)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", databaseHelper.GetUserID(username));
+                    command.Parameters.AddWithValue("@Action", username + " logged in.");
+                    command.Parameters.AddWithValue("@ActionDate", DateTime.Now);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
                 }
             }
         }
+
+    }
+
+    public class User
+    {
+        public int ID { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Email { get; set; }
+        public int AccountType { get; set; }
+        public string Username { get; set; }
     }
 }

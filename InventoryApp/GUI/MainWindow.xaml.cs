@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using InventoryApp.DAL;
+using InventoryApp.GUI;
+using System.Data.SqlClient;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,11 +20,19 @@ namespace InventoryApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly User currentUser;
+        private readonly DatabaseManager _databaseManager;
+        private DatabaseHelper databaseHelper;
         DispatcherTimer clockTimer = new DispatcherTimer();
 
-        public MainWindow()
+        public MainWindow(User user)
         {
             InitializeComponent();
+            currentUser = user;
+            txtTitle.Text = "HI! " + currentUser.FirstName;
+            _databaseManager = new DatabaseManager();
+            databaseHelper = new DatabaseHelper();
+
             // format date and time
             txtDateDisplay.Text = DateTime.Now.ToString("dddd MMMM dd, yyyy");
             clockTimer.Interval = TimeSpan.FromSeconds(1);
@@ -36,15 +47,30 @@ namespace InventoryApp
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
+            using (SqlConnection connection = _databaseManager.GetConnection())
+            {
+                string query = "INSERT INTO account_history (userID, action, actionDate) VALUES (@UserID, @Action, @ActionDate)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", databaseHelper.GetUserID(currentUser.Username));
+                    command.Parameters.AddWithValue("@Action", currentUser.Username + " logged out.");
+                    command.Parameters.AddWithValue("@ActionDate", DateTime.Now);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
             Application.Current.Shutdown();
         }
 
         private void btnInventory_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MessageBox.Show("In the inventory");
-            Application.Current.Shutdown();
+            ItemWindow itemWindow = new ItemWindow(currentUser);
+            itemWindow.Show();
 
+            //Application.Current.Shutdown();
             //registerVoter.Activate();
             //registerVoter.Show();
         }

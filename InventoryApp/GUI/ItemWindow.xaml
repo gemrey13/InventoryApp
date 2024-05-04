@@ -535,7 +535,7 @@
                                 Height="50"
                                 Source="../images/exit.png" />
                         </Button>
-                        <TextBlock HorizontalAlignment="Center" Text="Exit" />
+                        <TextBlock HorizontalAlignment="Center" Text="Go back" />
                     </StackPanel>
                 </StackPanel>
             </Border>

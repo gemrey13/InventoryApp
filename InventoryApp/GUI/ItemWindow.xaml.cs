@@ -27,12 +27,15 @@ namespace InventoryApp.GUI
     /// </summary>
     public partial class ItemWindow : Window
     {
+        private readonly User currentUser;
+
         private readonly DatabaseManager _databaseManager;
         public string SelectedHighlight { get; set; }
 
-        public ItemWindow()
+        public ItemWindow(User user)
         {
             InitializeComponent();
+            currentUser = user;
             _databaseManager = new DatabaseManager();
             showData();
         }
@@ -199,6 +202,9 @@ namespace InventoryApp.GUI
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+            MainWindow mainWindow = new MainWindow(currentUser);
+            mainWindow.Show();
 
         }
 

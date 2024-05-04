@@ -125,14 +125,21 @@
                 x:Name="txtDateDisplay"
                 Width="270"
                 Height="35"
-                Margin="181,84,149,0"
+                Margin="173,84,157,0"
                 VerticalAlignment="Top"
                 FontFamily="Segoe UI Light"
                 FontSize="25"
                 Text="Date" />
+            <TextBlock
+                x:Name="txtTitle"
+                Height="60"
+                Margin="147,145,115,695"
+                FontFamily="Segoe UI Light"
+                FontSize="44"
+                TextAlignment="Center"><Run Text="" /><LineBreak /><Run /></TextBlock>
             <Image
                 Height="548"
-                Margin="4,164,10,0"
+                Margin="4,216,10,0"
                 VerticalAlignment="Top"
                 Source="../images/inventory-clipart.png" />
 
@@ -213,7 +220,7 @@
                             VerticalAlignment="Center"
                             FontFamily="Segoe UI Light"
                             FontSize="50"
-                            Text="Requested item" />
+                            Text="Request items" />
                     </StackPanel>
 
                     <StackPanel

@@ -49,3 +49,6 @@ CREATE TABLE inventory_date_tracking (
     FOREIGN KEY (itemID) REFERENCES item(ID)
 );
 
+
+INSERT INTO user_account (lastName, firstName, email, account_type, username, [password])
+VALUES ('Doe', 'John', 'john.doe@example.com', 1, 'admin', '123');
