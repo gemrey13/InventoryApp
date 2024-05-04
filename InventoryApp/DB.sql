@@ -32,3 +32,20 @@ CREATE TABLE request (
     FOREIGN KEY (employeeID) REFERENCES [user_account](ID),
     FOREIGN KEY (adminID) REFERENCES [user_account](ID)
 );
+
+CREATE TABLE account_history (
+    ID INT PRIMARY KEY IDENTITY,
+    userID INT,
+    action nvarchar(100),
+    actionDate DATETIME,
+    FOREIGN KEY (userID) REFERENCES user_account(ID)
+);
+
+CREATE TABLE inventory_date_tracking (
+    ID INT PRIMARY KEY IDENTITY,
+    itemID INT,
+    action nvarchar(100),
+    actionDate DATETIME,
+    FOREIGN KEY (itemID) REFERENCES item(ID)
+);
+
