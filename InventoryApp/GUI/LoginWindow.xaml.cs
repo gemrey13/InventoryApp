@@ -25,7 +25,6 @@ namespace InventoryApp.GUI
 
             if (AuthenticateUser(username, password, out User currentUser))
             {
-                InsertLoginHistory(currentUser.Username);
                 mainWindow = new MainWindow(currentUser);
                 this.Close();
                 mainWindow.Show();
@@ -68,22 +67,6 @@ namespace InventoryApp.GUI
             }
             user = null;
             return false;
-        }
-        private void InsertLoginHistory(string username)
-        {
-            using (SqlConnection connection = _databaseManager.GetConnection())
-            {
-                string query = "INSERT INTO account_history (userID, action, actionDate) VALUES (@UserID, @Action, @ActionDate)";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@UserID", databaseHelper.GetUserID(username));
-                    command.Parameters.AddWithValue("@Action", username + " logged in.");
-                    command.Parameters.AddWithValue("@ActionDate", DateTime.Now);
-
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
         }
 
     }

@@ -30,6 +30,9 @@ namespace InventoryApp.GUI
         private readonly User currentUser;
 
         private readonly DatabaseManager _databaseManager;
+
+        private DatabaseHelper databaseHelper;
+
         public string SelectedHighlight { get; set; }
 
         public ItemWindow(User user)
@@ -37,6 +40,7 @@ namespace InventoryApp.GUI
             InitializeComponent();
             currentUser = user;
             _databaseManager = new DatabaseManager();
+            databaseHelper = new DatabaseHelper();
             showData();
         }
 
@@ -92,6 +96,20 @@ namespace InventoryApp.GUI
                 intCost.Clear();
                 txtStatus.SelectedIndex = -1;
                 txtHighlight.SelectedIndex = -1;
+
+                using (SqlConnection connection = _databaseManager.GetConnection())
+                {
+                    string query = "INSERT INTO account_history (userID, action, actionDate) VALUES (@UserID, @Action, @ActionDate)";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", databaseHelper.GetUserID(currentUser.Username));
+                        command.Parameters.AddWithValue("@Action", currentUser.Username + " added a item " + itemName);
+                        command.Parameters.AddWithValue("@ActionDate", DateTime.Now);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
             }
 
         }

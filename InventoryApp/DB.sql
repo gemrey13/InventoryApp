@@ -41,13 +41,6 @@ CREATE TABLE account_history (
     FOREIGN KEY (userID) REFERENCES user_account(ID)
 );
 
-CREATE TABLE inventory_date_tracking (
-    ID INT PRIMARY KEY IDENTITY,
-    itemID INT,
-    action nvarchar(100),
-    actionDate DATETIME,
-    FOREIGN KEY (itemID) REFERENCES item(ID)
-);
 
 
 INSERT INTO user_account (lastName, firstName, email, account_type, username, [password])

@@ -47,20 +47,6 @@ namespace InventoryApp
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection = _databaseManager.GetConnection())
-            {
-                string query = "INSERT INTO account_history (userID, action, actionDate) VALUES (@UserID, @Action, @ActionDate)";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@UserID", databaseHelper.GetUserID(currentUser.Username));
-                    command.Parameters.AddWithValue("@Action", currentUser.Username + " logged out.");
-                    command.Parameters.AddWithValue("@ActionDate", DateTime.Now);
-
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-
             Application.Current.Shutdown();
         }
 
