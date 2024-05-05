@@ -229,7 +229,7 @@
             </Button>
 
             <Button
-                x:Name="btnRequest"
+                x:Name="btnApproved"
                 Grid.Row="1"
                 Width="80"
                 Height="80"
@@ -237,7 +237,7 @@
                 Background="Transparent"
                 BorderBrush="#2f6deb"
                 BorderThickness="5"
-                Click="btnRequest_Click"
+                Click="btnApproved_Click"
                 Cursor="Hand">
                 <Image
                     Width="50"
@@ -251,7 +251,7 @@
                 Text="Approve" />
 
             <Button
-                x:Name="btnDelete"
+                x:Name="btnDenied"
                 Grid.Row="1"
                 Width="80"
                 Height="80"
@@ -259,8 +259,7 @@
                 Background="Transparent"
                 BorderBrush="#2f6deb"
                 BorderThickness="5"
-                Click="btnDelete_Click"
-                Cursor="Hand">
+                Cursor="Hand" Click="btnDenied_Click">
                 <Image
                     Width="50"
                     Height="50"
@@ -270,7 +269,7 @@
                 Grid.Row="1"
                 Margin="401,80,0,0"
                 HorizontalAlignment="Left"
-                Text="Reject" />
+                Text="Denied" />
 
             <Button
                 Margin="305,80,661,130"

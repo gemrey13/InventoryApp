@@ -24,12 +24,15 @@ namespace InventoryApp.GUI
     {
         private readonly User currentUser;
         private readonly DatabaseManager _databaseManager;
+        private DatabaseHelper databaseHelper;
+
 
         public StatusItem(User user)
         {
             InitializeComponent();
             currentUser = user;
             _databaseManager = new DatabaseManager();
+            databaseHelper = new DatabaseHelper();
             showRequestItem();
         }
 
@@ -143,16 +146,72 @@ namespace InventoryApp.GUI
             txtSearch.Clear();
         }
 
-  
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void btnApproved_Click(object sender, RoutedEventArgs e)
         {
+            // Get the selected item from the DataGrid
+            DataRowView selectedRow = (DataRowView)requestedList.SelectedItem;
+
+            if (selectedRow != null)
+            {
+                // Get the ID of the selected request
+                int requestID = Convert.ToInt32(selectedRow["ID"]);
+                string itemName = selectedRow["name"].ToString();
+
+
+                // Update the status in the database
+                UpdateRequestStatus(requestID, "Approved");
+                MessageBox.Show($"The item {itemName} has been approved.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                databaseHelper.LoggedAction(currentUser.ID, currentUser.Username + " Approved a item named " + itemName);
+
+                showRequestItem();
+            }
+            else
+            {
+                MessageBox.Show("Please select a request to approve.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnDenied_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView selectedRow = (DataRowView)requestedList.SelectedItem;
+
+            if (selectedRow != null)
+            {
+                // Get the ID of the selected request
+                int requestID = Convert.ToInt32(selectedRow["ID"]);
+                string itemName = selectedRow["name"].ToString();
+
+                // Update the status in the database
+                UpdateRequestStatus(requestID, "Denied");
+                MessageBox.Show($"The item {itemName} has been denied.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                databaseHelper.LoggedAction(currentUser.ID, currentUser.Username + " Denied a item named " + itemName);
+
+                showRequestItem();
+            }
+            else
+            {
+                MessageBox.Show("Please select a request to approve.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 
-        private void btnRequest_Click(object sender, RoutedEventArgs e)
+        private void UpdateRequestStatus(int requestID, string newStatus)
         {
+            using (SqlConnection connection = _databaseManager.GetConnection())
+            {
+                string query = "UPDATE request SET [status] = @NewStatus WHERE ID = @RequestID";
 
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NewStatus", newStatus);
+                    command.Parameters.AddWithValue("@RequestID", requestID);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
         }
+
+       
     }
 }
