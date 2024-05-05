@@ -41,30 +41,30 @@ namespace InventoryApp.GUI
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
+            this.Close();
         }
 
         private void btnInventory_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             ItemWindow itemWindow = new ItemWindow(currentUser);
             itemWindow.Show();
+            this.Close();
         }
 
         private void btnAccountHistory_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             AccountWindow accountWindow = new AccountWindow(currentUser);
             accountWindow.Show();
+            this.Close();
         }
 
         private void btnRequest_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             RequestItem requestItem = new RequestItem(currentUser);
             requestItem.Show();
+            this.Close();
         }
 
 

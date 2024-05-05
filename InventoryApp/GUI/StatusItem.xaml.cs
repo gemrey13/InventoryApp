@@ -38,9 +38,9 @@ namespace InventoryApp.GUI
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             MainWindow mainWindow = new MainWindow(currentUser);
             mainWindow.Show();
+            this.Close();
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -211,7 +211,6 @@ namespace InventoryApp.GUI
                 }
             }
         }
-
        
     }
 }

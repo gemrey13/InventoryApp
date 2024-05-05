@@ -44,8 +44,6 @@ namespace InventoryApp.GUI
             showData();
         }
 
-
-
         private bool AddItem(string itemName, string brand, string description, int cost, string status, string highlight)
         {
             try
@@ -221,19 +219,16 @@ namespace InventoryApp.GUI
             }
         }
 
-
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             MainWindow mainWindow = new MainWindow(currentUser);
             mainWindow.Show();
-
+            this.Close();
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchKeyword = txtSearch.Text.Trim();
-
             SearchItems(searchKeyword);
         }
 
@@ -309,7 +304,6 @@ namespace InventoryApp.GUI
             }
         }
 
-
         private void intCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextNumeric(e.Text);
@@ -320,7 +314,6 @@ namespace InventoryApp.GUI
             Regex regex = new Regex("[^0-9]+");
             return !regex.IsMatch(text);
         }
-
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {

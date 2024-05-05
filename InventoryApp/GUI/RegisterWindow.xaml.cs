@@ -27,7 +27,6 @@ namespace InventoryApp.GUI
         {
             InitializeComponent();
             _databaseManager = new DatabaseManager();
-
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -110,9 +109,9 @@ namespace InventoryApp.GUI
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
+            this.Close();
         }
     }
 }

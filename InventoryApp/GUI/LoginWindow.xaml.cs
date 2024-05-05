@@ -29,14 +29,14 @@ namespace InventoryApp.GUI
                     if (currentUser.AccountType == 1)
                     {
                         mainWindow = new MainWindow(currentUser);
-                        this.Close();
                         mainWindow.Show();
+                        this.Close();
                     }
                     else if (currentUser.AccountType == 0)
                     {
                         ClientWindow clientWindow = new ClientWindow(currentUser);
-                        this.Close();
                         clientWindow.Show();
+                        this.Close();
                     }
                     else
                     {

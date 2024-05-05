@@ -39,16 +39,14 @@ namespace InventoryApp.GUI
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchKeyword = txtSearch.Text.Trim();
-
             SearchItems(searchKeyword);
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             ClientWindow clientWindow = new ClientWindow(currentUser);
             clientWindow.Show();
-
+            this.Close();
         }
 
         private void SearchItems(string searchKeyword)
@@ -111,7 +109,6 @@ namespace InventoryApp.GUI
             }
             requestedList.ItemsSource = dt.DefaultView;
         }
-
 
         private void highlightFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

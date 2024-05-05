@@ -47,44 +47,37 @@ namespace InventoryApp
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
+            this.Close();
         }
 
         private void btnInventory_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             ItemWindow itemWindow = new ItemWindow(currentUser);
             itemWindow.Show();
-
-            //Application.Current.Shutdown();
-            //registerVoter.Activate();
-            //registerVoter.Show();
+            this.Close();
         }
 
         private void btnAccountHistory_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             AccountWindow accountWindow = new AccountWindow(currentUser);
             accountWindow.Show();
+            this.Close();
         }
 
         private void btnAnalytics_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             MessageBox.Show("In the Analytics");
             Application.Current.Shutdown();
-
-            //registercandidate candidate = new registercandidate();
-            //candidate.show();
+            this.Close();
         }
 
         private void btnRequest_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             StatusItem statusItem = new StatusItem(currentUser);
             statusItem.Show();
+            this.Close();
         }
     }
 }
