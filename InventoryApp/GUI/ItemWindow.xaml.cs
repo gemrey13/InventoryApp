@@ -97,19 +97,7 @@ namespace InventoryApp.GUI
                 txtStatus.SelectedIndex = -1;
                 txtHighlight.SelectedIndex = -1;
 
-                using (SqlConnection connection = _databaseManager.GetConnection())
-                {
-                    string query = "INSERT INTO account_history (userID, action, actionDate) VALUES (@UserID, @Action, @ActionDate)";
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@UserID", databaseHelper.GetUserID(currentUser.Username));
-                        command.Parameters.AddWithValue("@Action", currentUser.Username + " added a item " + itemName);
-                        command.Parameters.AddWithValue("@ActionDate", DateTime.Now);
-
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
+                databaseHelper.LoggedAction(currentUser.ID, currentUser.Username + " added an item " + itemName);
             }
 
         }
@@ -164,6 +152,8 @@ namespace InventoryApp.GUI
                     {
                         MessageBox.Show("Item updated successfully.");
                         showData();
+                        databaseHelper.LoggedAction(currentUser.ID, currentUser.Username + " updated an item " + itemName);
+
                     }
                     else
                     {
@@ -185,6 +175,8 @@ namespace InventoryApp.GUI
                 DataRowView selectedItem = (DataRowView)itemsList.SelectedItem;
 
                 int id = Convert.ToInt32(selectedItem["id"]);
+                string itemName = txtItemName.Text;
+
 
                 string query = @"DELETE FROM item WHERE id = @id";
 
@@ -200,6 +192,8 @@ namespace InventoryApp.GUI
                     {
                         MessageBox.Show("Item deleted successfully.");
                         showData();
+                        databaseHelper.LoggedAction(currentUser.ID, currentUser.Username + " deleted an item " + itemName);
+
                     }
                     else
                     {

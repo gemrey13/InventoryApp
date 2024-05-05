@@ -35,5 +35,23 @@ namespace InventoryApp.DAL
 
             return userID;
         }
+
+
+        public void LoggedAction(int userID, string action) 
+        {
+            using (SqlConnection connection = _databaseManager.GetConnection())
+            {
+                string query = "INSERT INTO account_history (userID, action, actionDate) VALUES (@UserID, @Action, @ActionDate)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    command.Parameters.AddWithValue("@Action", action);
+                    command.Parameters.AddWithValue("@ActionDate", DateTime.Now);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

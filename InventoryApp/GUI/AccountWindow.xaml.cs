@@ -1,6 +1,7 @@
 ﻿using InventoryApp.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -24,13 +25,16 @@ namespace InventoryApp.GUI
     {
         private readonly User currentUser;
         private readonly DatabaseManager _databaseManager;
+        private DatabaseHelper databaseHelper;
 
         public AccountWindow(User user)
         {
             InitializeComponent();
             currentUser = user;
             _databaseManager = new DatabaseManager();
+            databaseHelper = new DatabaseHelper();
             txtUsername.Text = currentUser.Username;
+            showData();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -40,17 +44,21 @@ namespace InventoryApp.GUI
             mainWindow.Show();
 
         }
-
-        private void intCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void showData()
         {
-            e.Handled = !IsTextNumeric(e.Text);
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = _databaseManager.GetConnection())
+            {
+                string query = @"SELECT id, action, actionDate FROM account_history WHERE userID = @UserID";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", currentUser.ID);
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
+            accountList.ItemsSource = dt.DefaultView;
         }
 
-        private bool IsTextNumeric(string text)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            return !regex.IsMatch(text);
-        }
 
 
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
@@ -86,6 +94,8 @@ namespace InventoryApp.GUI
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Password changed successfully.");
+                        databaseHelper.LoggedAction(currentUser.ID, currentUser.Username + " changed password.");
+                        showData();
                         txtOldPassword.Password = "";
                         txtNewPassword.Password = "";
                         txtConfirmPassword.Password = "";

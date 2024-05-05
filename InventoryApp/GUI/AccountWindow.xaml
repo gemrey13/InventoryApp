@@ -228,8 +228,7 @@
                 Height="35"
                 Margin="506,182,137,32"
                 FontSize="25"
-                FontWeight="Bold"
-                PreviewTextInput="intCost_PreviewTextInput" />
+                FontWeight="Bold" />
 
             <Button
                 x:Name="btnChangePassword"
@@ -291,7 +290,7 @@
                 HorizontalAlignment="Left"
                 Text="Go back" />
             <DataGrid
-                x:Name="accountHistoryList"
+                x:Name="accountList"
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 Margin="20,32,20,0"
@@ -310,7 +309,6 @@
                 IsReadOnly="True"
                 ItemsSource="{Binding}"
                 VerticalGridLinesBrush="Gray">
-
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="60"

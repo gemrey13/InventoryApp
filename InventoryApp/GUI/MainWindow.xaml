@@ -220,7 +220,7 @@
                             VerticalAlignment="Center"
                             FontFamily="Segoe UI Light"
                             FontSize="50"
-                            Text="Request items" />
+                            Text="Requested items" />
                     </StackPanel>
 
                     <StackPanel
