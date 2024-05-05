@@ -33,6 +33,7 @@ CREATE TABLE request (
     FOREIGN KEY (adminID) REFERENCES [user_account](ID),
     FOREIGN KEY (itemID) REFERENCES item(ID) -- Reference to the item table
 );
+
 CREATE TABLE account_history (
     ID INT PRIMARY KEY IDENTITY,
     userID INT,

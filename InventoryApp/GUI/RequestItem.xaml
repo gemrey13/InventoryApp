@@ -230,10 +230,10 @@
 
             <Button
                 x:Name="btnRequest"
-                Grid.RowSpan="2"
+                Grid.Row="1"
                 Width="80"
                 Height="80"
-                Margin="650,244,460,26"
+                Margin="151,0,959,20"
                 Background="Transparent"
                 BorderBrush="#2f6deb"
                 BorderThickness="5"
@@ -246,9 +246,32 @@
             </Button>
             <TextBlock
                 Grid.Row="1"
-                Margin="655,74,0,11"
+                Margin="156,84,0,1"
                 HorizontalAlignment="Left"
                 Text="Request Item" />
+
+            <Button
+                x:Name="btnDelete"
+                Grid.Row="1"
+                Width="80"
+                Height="80"
+                Margin="377,0,733,20"
+                Background="Transparent"
+                BorderBrush="#2f6deb"
+                BorderThickness="5"
+                Click="btnDelete_Click"
+                Cursor="Hand">
+                <Image
+                    Width="50"
+                    Height="50"
+                    Source="../images/delete-entry.png" />
+            </Button>
+            <TextBlock
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="363,82,0,398"
+                HorizontalAlignment="Left"
+                Text="Cancel Request Item" />
 
             <Button
                 Margin="305,80,661,130"
@@ -313,10 +336,18 @@
                     </Style>
                 </Button.Style>
             </Button>
+
+            <TextBlock
+                Grid.Row="2"
+                Margin="20,21,0,350"
+                HorizontalAlignment="Left"
+                FontSize="20"
+                Text="Items" />
+
             <DataGrid
                 x:Name="itemsList"
                 Grid.Row="2"
-                Margin="20,21,20,10"
+                Margin="20,50,20,158"
                 AutoGenerateColumns="False"
                 BorderBrush="#2f6deb"
                 BorderThickness="3"
@@ -413,8 +444,8 @@
                 Text="Search Item Name or Brand Name" />
             <Button
                 x:Name="btnExit"
-                Grid.Row="3"
-                Margin="1030,10,80,40"
+                Grid.Row="1"
+                Margin="702,0,408,20"
                 Background="Transparent"
                 BorderBrush="#2f6deb"
                 BorderThickness="5"
@@ -426,8 +457,9 @@
                     Source="../images/exit.png" />
             </Button>
             <TextBlock
-                Grid.Row="3"
-                Margin="1048,90,0,16"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="720,80,0,396"
                 HorizontalAlignment="Left"
                 Text="Go back" />
 
@@ -438,6 +470,90 @@
                 Height="350"
                 Margin="839,41,51,359"
                 Source="../images/inventory.png" />
+
+            <TextBlock
+                Grid.Row="2"
+                Margin="20,256,0,115"
+                HorizontalAlignment="Left"
+                FontSize="20"
+                Text="Requested Items" />
+            <DataGrid
+                x:Name="requestedList"
+                Grid.Row="2"
+                Grid.RowSpan="2"
+                Margin="20,285,20,52"
+                AutoGenerateColumns="False"
+                BorderBrush="#2f6deb"
+                BorderThickness="3"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
+                CanUserSortColumns="True"
+                ColumnWidth="Auto"
+                FontSize="20"
+                FontWeight="DemiBold"
+                GridLinesVisibility="All"
+                HeadersVisibility="All"
+                HorizontalGridLinesBrush="Gray"
+                IsReadOnly="True"
+                ItemsSource="{Binding}"
+                VerticalGridLinesBrush="Gray">
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding highlight}" Value="No Color">
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Red">
+                                <Setter Property="Background" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Blue">
+                                <Setter Property="Background" Value="Blue" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Yellow">
+                                <Setter Property="Background" Value="Yellow" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding highlight}" Value="Green">
+                                <Setter Property="Background" Value="Green" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding name}"
+                        Header="Name" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding brand}"
+                        Header="Brand" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding requestStatus}"
+                        Header="Request Status" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding highlight}"
+                        Header="Status" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding dateAdded}"
+                        Header="Date Added" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding cost}"
+                        Header="Cost" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding description}"
+                        Header="Description" />
+                </DataGrid.Columns>
+
+            </DataGrid>
 
         </Grid>
     </Border>
