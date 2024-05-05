@@ -1,11 +1,11 @@
 ﻿<Window
-    x:Class="InventoryApp.GUI.RequestItem"
+    x:Class="InventoryApp.GUI.StatusItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:InventoryApp.GUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Request Item"
+    Title="Status Item"
     Width="1200"
     Height="900"
     AllowsTransparency="True"
@@ -246,9 +246,9 @@
             </Button>
             <TextBlock
                 Grid.Row="1"
-                Margin="156,84,0,1"
+                Margin="168,79,0,6"
                 HorizontalAlignment="Left"
-                Text="Request Item" />
+                Text="Approve" />
 
             <Button
                 x:Name="btnDelete"
@@ -268,10 +268,9 @@
             </Button>
             <TextBlock
                 Grid.Row="1"
-                Grid.RowSpan="2"
-                Margin="363,82,0,398"
+                Margin="401,80,0,0"
                 HorizontalAlignment="Left"
-                Text="Cancel Request Item" />
+                Text="Reject" />
 
             <Button
                 Margin="305,80,661,130"
@@ -338,99 +337,11 @@
             </Button>
 
             <TextBlock
-                Grid.Row="2"
-                Margin="20,21,0,350"
-                HorizontalAlignment="Left"
-                FontSize="20"
-                Text="Items" />
-
-            <DataGrid
-                x:Name="itemsList"
-                Grid.Row="2"
-                Margin="20,50,20,158"
-                AutoGenerateColumns="False"
-                BorderBrush="#2f6deb"
-                BorderThickness="3"
-                CanUserReorderColumns="False"
-                CanUserResizeColumns="True"
-                CanUserSortColumns="True"
-                ColumnWidth="Auto"
-                FontSize="20"
-                FontWeight="DemiBold"
-                GridLinesVisibility="All"
-                HeadersVisibility="All"
-                HorizontalGridLinesBrush="Gray"
-                IsReadOnly="True"
-                ItemsSource="{Binding}"
-                VerticalGridLinesBrush="Gray">
-
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Background" Value="White" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding highlight}" Value="No Color">
-                                <Setter Property="Background" Value="White" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding highlight}" Value="Red">
-                                <Setter Property="Background" Value="Red" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding highlight}" Value="Blue">
-                                <Setter Property="Background" Value="Blue" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding highlight}" Value="Yellow">
-                                <Setter Property="Background" Value="Yellow" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding highlight}" Value="Green">
-                                <Setter Property="Background" Value="Green" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
-
-
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="30"
-                        Binding="{Binding id}"
-                        Header="ID" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding name}"
-                        Header="Name" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding brand}"
-                        Header="Brand" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding highlight}"
-                        Header="Highlight" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding status}"
-                        Header="Status" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding dateAdded}"
-                        Header="Date Added" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding cost}"
-                        Header="Cost" />
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding description}"
-                        Header="Description" />
-                </DataGrid.Columns>
-
-            </DataGrid>
-
-            <TextBlock
                 Height="35"
                 Margin="917,23,0,192"
                 HorizontalAlignment="Left"
                 FontSize="25"
-                Text="Request Item" />
+                Text="Requested Items" />
             <TextBox
                 x:Name="txtSearch"
                 Margin="44,180,772,34"
@@ -440,7 +351,7 @@
                 TextChanged="txtSearch_TextChanged" />
             <TextBlock
                 Height="20"
-                Margin="162,155,880,75"
+                Margin="151,155,891,75"
                 Text="Search Item Name or Brand Name" />
             <Button
                 x:Name="btnExit"
@@ -473,7 +384,7 @@
 
             <TextBlock
                 Grid.Row="2"
-                Margin="20,256,0,115"
+                Margin="20,26,0,344"
                 HorizontalAlignment="Left"
                 FontSize="20"
                 Text="Requested Items" />
@@ -481,7 +392,7 @@
                 x:Name="requestedList"
                 Grid.Row="2"
                 Grid.RowSpan="2"
-                Margin="20,285,20,52"
+                Margin="20,65,20,64"
                 AutoGenerateColumns="False"
                 BorderBrush="#2f6deb"
                 BorderThickness="3"
