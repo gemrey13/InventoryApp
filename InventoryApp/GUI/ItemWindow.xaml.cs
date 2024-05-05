@@ -80,12 +80,26 @@ namespace InventoryApp.GUI
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
 
-            string itemName = txtItemName.Text;
-            string brand = txtBrand.Text;
-            string description = txtDescription.Text;
-            int cost = int.Parse(intCost.Text);
-            string status = txtStatus.Text;
-            string highlight = txtHighlight.Text;
+            string itemName = txtItemName.Text.Trim();
+            string brand = txtBrand.Text.Trim();
+            string description = txtDescription.Text.Trim();
+            string costText = intCost.Text.Trim();
+            string status = txtStatus.Text.Trim();
+            string highlight = txtHighlight.Text.Trim();
+
+            if (string.IsNullOrEmpty(itemName) || string.IsNullOrEmpty(brand) ||
+                string.IsNullOrEmpty(description) || string.IsNullOrEmpty(costText) ||
+                string.IsNullOrEmpty(status) || string.IsNullOrEmpty(highlight))
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+
+            if (!int.TryParse(costText, out int cost))
+            {
+                MessageBox.Show("Invalid cost value. Please enter a valid integer.");
+                return;
+            }
 
             if (AddItem(itemName, brand, description, cost, status, highlight))
             {

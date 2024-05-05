@@ -47,7 +47,9 @@ namespace InventoryApp
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Hide();
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
         }
 
         private void btnInventory_Click(object sender, RoutedEventArgs e)
