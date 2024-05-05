@@ -2,7 +2,7 @@ CREATE TABLE user_account (
     ID INT PRIMARY KEY IDENTITY,
     lastName nchar(20),
     firstName nchar(20),
-    email nchar(20),
+    email nchar(50),
     account_type INT,
 	username nchar(20),
 	[password] nchar(20)
@@ -45,3 +45,5 @@ CREATE TABLE account_history (
 
 INSERT INTO user_account (lastName, firstName, email, account_type, username, [password])
 VALUES ('Doe', 'John', 'john.doe@example.com', 1, 'admin', '123');
+INSERT INTO user_account (lastName, firstName, email, account_type, username, [password])
+VALUES ('Smith', 'Jane', 'jane.smith@example.com', 0, 'client', '123');

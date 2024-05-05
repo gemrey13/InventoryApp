@@ -1,0 +1,290 @@
+﻿<Window
+    x:Class="InventoryApp.GUI.ClientWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:InventoryApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="EquipLogic Menu Client"
+    Width="1400"
+    Height="900"
+    AllowsTransparency="True"
+    Background="Transparent"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle
+                            Margin="2"
+                            SnapsToDevicePixels="true"
+                            Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                            StrokeDashArray="1 2"
+                            StrokeThickness="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD" />
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1" />
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6" />
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B" />
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
+        <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="65"
+                            SnapsToDevicePixels="true">
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Focusable="False"
+                                RecognizesAccessKey="True"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource Button.MouseOver.Background}" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border CornerRadius="30">
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Offset="0.55" Color="white" />
+                <GradientStop Offset=".25" Color="#2f6deb" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="800" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Width="220"
+                Height="50"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                CornerRadius="5">
+
+                <TextBlock
+                    x:Name="txtTimeDisplay"
+                    Width="220"
+                    Height="50"
+                    Margin="-12,4,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FontFamily="Segoe UI"
+                    FontSize="40"
+                    Foreground="Black"
+                    Text="Time" />
+            </Border>
+            <TextBlock
+                x:Name="txtDateDisplay"
+                Width="270"
+                Height="35"
+                Margin="173,84,157,0"
+                VerticalAlignment="Top"
+                FontFamily="Segoe UI Light"
+                FontSize="25"
+                Text="Date" />
+            <TextBlock
+                x:Name="txtTitle"
+                Height="60"
+                Margin="147,145,115,695"
+                FontFamily="Segoe UI Light"
+                FontSize="44"
+                TextAlignment="Center"><Run Text="" /><LineBreak /><Run /></TextBlock>
+            <Image
+                Height="548"
+                Margin="4,216,10,0"
+                VerticalAlignment="Top"
+                Source="../images/inventory-clipart.png" />
+
+            <TextBlock
+                Height="60"
+                Margin="185,766,200,74"
+                FontFamily="Segoe UI Light"
+                FontSize="44"><Run Text="EquipLogic" /><LineBreak /><Run /></TextBlock>
+            <TextBlock
+                x:Name="txtAuthors"
+                Margin="0,833,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                FontFamily="Segoe UI Light"
+                FontSize="25"
+                Text="Inventory Operations for Technical Gear" />
+            <TextBlock
+                x:Name="txtTemp"
+                Height="30"
+                Margin="0,4,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Text="EquipLogic" />
+            <Border
+                Grid.Column="1"
+                Margin="10,10,10,10"
+                BorderBrush="#2f6deb"
+                BorderThickness="5"
+                CornerRadius="30">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <Button
+                            x:Name="btnInventory"
+                            Width="110"
+                            Height="110"
+                            Background="Transparent"
+                            BorderBrush="#2f6deb"
+                            BorderThickness="5"
+                            Click="btnInventory_Click"
+                            Cursor="Hand"
+                            Style="{DynamicResource RoundedButton}">
+                            <Image
+                                Width="80"
+                                Height="80"
+                                Source="../images/inventory.png" />
+                        </Button>
+
+                        <TextBlock
+                            Margin="30,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe UI Light"
+                            FontSize="50"
+                            Text="Inventory Management" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="btnRequest"
+                            Width="110"
+                            Height="110"
+                            Background="Transparent"
+                            BorderBrush="#2f6deb"
+                            BorderThickness="5"
+                            Click="btnRequest_Click"
+                            Cursor="Hand"
+                            Style="{DynamicResource RoundedButton}">
+                            <Image
+                                Width="80"
+                                Height="80"
+                                Source="../images/request.png" />
+                        </Button>
+
+                        <TextBlock
+                            Margin="30,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe UI Light"
+                            FontSize="50"
+                            Text="Requested items" />
+                    </StackPanel>
+
+
+                    <StackPanel
+                        Margin="10,20,0,0"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="btnAccountHistory"
+                            Width="110"
+                            Height="110"
+                            Background="Transparent"
+                            BorderBrush="#2f6deb"
+                            BorderThickness="5"
+                            Click="btnAccountHistory_Click"
+                            Cursor="Hand"
+                            Style="{DynamicResource RoundedButton}">
+                            <Image
+                                x:Name="imgVotingProper"
+                                Width="80"
+                                Height="80"
+                                Source="../images/maintenance.png" />
+                        </Button>
+
+                        <TextBlock
+                            x:Name="txtVotingProper"
+                            Margin="30,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe UI Light"
+                            FontSize="50"
+                            Text="Account History" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="10,20,0,0"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="btnExit"
+                            Width="110"
+                            Height="110"
+                            Background="Transparent"
+                            BorderBrush="#2f6deb"
+                            BorderThickness="5"
+                            Click="btnExit_Click"
+                            Cursor="Hand"
+                            Style="{DynamicResource RoundedButton}">
+                            <Image
+                                Width="80"
+                                Height="80"
+                                Source="../images/exit.png" />
+                        </Button>
+
+                        <TextBlock
+                            Margin="30,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe UI Light"
+                            FontSize="50"
+                            Text="Exit System" />
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </Grid>
+    </Border>
+</Window>

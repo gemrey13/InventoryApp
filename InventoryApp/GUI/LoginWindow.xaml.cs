@@ -25,9 +25,22 @@ namespace InventoryApp.GUI
 
             if (AuthenticateUser(username, password, out User currentUser))
             {
-                mainWindow = new MainWindow(currentUser);
-                this.Close();
-                mainWindow.Show();
+                if (currentUser.AccountType == 1)
+                {
+                    mainWindow = new MainWindow(currentUser);
+                    this.Close();
+                    mainWindow.Show();
+                }
+                else if (currentUser.AccountType == 0)
+                {
+                    ClientWindow clientWindow = new ClientWindow(currentUser);
+                    this.Close();
+                    clientWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid account type.");
+                }
             }
             else
             {

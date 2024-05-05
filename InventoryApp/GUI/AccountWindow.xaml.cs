@@ -39,10 +39,22 @@ namespace InventoryApp.GUI
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            MainWindow mainWindow = new MainWindow(currentUser);
-            mainWindow.Show();
-
+            if (currentUser.AccountType == 1)
+            {
+                MainWindow mainWindow = new MainWindow(currentUser);
+                this.Close();
+                mainWindow.Show();
+            }
+            else if (currentUser.AccountType == 0)
+            {
+                ClientWindow clientWindow = new ClientWindow(currentUser);
+                this.Close();
+                clientWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid account type.");
+            }
         }
         private void showData()
         {
