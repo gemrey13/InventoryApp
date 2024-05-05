@@ -191,20 +191,18 @@
                 FontFamily="Segoe UI Light"
                 FontSize="30"
                 Text="Username" />
-
             <TextBlock
                 Margin="0,152,702,68"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe UI Light"
                 FontSize="20"
                 Text="Old Password" />
-            <TextBox
+            <PasswordBox
                 x:Name="txtOldPassword"
                 Height="35"
                 Margin="83,182,560,32"
                 FontSize="25"
-                FontWeight="Bold"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.name, Mode=OneWay}" />
+                FontWeight="Bold" />
 
             <TextBlock
                 Margin="0,42,273,178"
@@ -212,13 +210,12 @@
                 FontFamily="Segoe UI Light"
                 FontSize="20"
                 Text="New Password" />
-            <TextBox
+            <PasswordBox
                 x:Name="txtNewPassword"
                 Height="35"
                 Margin="506,72,138,143"
                 FontSize="25"
-                FontWeight="Bold"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.brand, Mode=OneWay}" />
+                FontWeight="Bold" />
 
             <TextBlock
                 Margin="0,150,244,70"
@@ -226,17 +223,19 @@
                 FontFamily="Segoe UI Light"
                 FontSize="20"
                 Text="Confirm Password" />
-            <TextBox
+            <PasswordBox
                 x:Name="txtConfirmPassword"
                 Height="35"
                 Margin="506,182,137,32"
                 FontSize="25"
                 FontWeight="Bold"
-                PreviewTextInput="intCost_PreviewTextInput"
-                Text="{Binding ElementName=itemsList, Path=SelectedItem.cost, Mode=OneWay}" />
+                PreviewTextInput="intCost_PreviewTextInput" />
+
             <Button
+                x:Name="btnChangePassword"
                 Grid.Row="1"
                 Margin="317,10,383,50"
+                Click="btnChangePassword_Click"
                 Content="Change Password"
                 Cursor="Hand">
                 <Button.Style>

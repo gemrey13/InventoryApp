@@ -58,7 +58,8 @@ namespace InventoryApp.GUI
                             FirstName = reader["firstName"].ToString(),
                             Email = reader["email"].ToString(),
                             AccountType = Convert.ToInt32(reader["account_type"]),
-                            Username = username
+                            Username = username,
+                            Password = password
                         };
                         reader.Close();
                         return true;
@@ -95,5 +96,6 @@ namespace InventoryApp.GUI
         public string Email { get; set; }
         public int AccountType { get; set; }
         public string Username { get; set; }
+        public string Password { get; set; }
     }
 }
