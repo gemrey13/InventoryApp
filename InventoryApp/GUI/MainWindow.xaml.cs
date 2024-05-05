@@ -75,33 +75,11 @@ namespace InventoryApp
             //registerVoter.Show();
         }
 
-        private void btnUserManagement_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            MessageBox.Show("In the User Management");
-            Application.Current.Shutdown();
-        }
-
         private void btnAccountHistory_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MessageBox.Show("In the ACcount History");
-            Application.Current.Shutdown();
-
-            //if (txtTemp.Text.Trim() == "1")
-            //{
-            //    this.Hide();
-            //    MessageBox.Show("In the ACcount History");
-            //    Application.Current.Shutdown();
-                // RegisterUser userWindow = new RegisterUser();
-                // userWindow.Show();
-                // this.Hide();
-            //}
-            //else
-            //{
-            //    txtVotingProper.Text = "Action not authorized";
-            //    imgVotingProper.Source = new BitmapImage(new Uri(@"/images/notallowed.png", UriKind.Relative));
-            //}
+            AccountWindow accountWindow = new AccountWindow(currentUser);
+            accountWindow.Show();
         }
 
         private void btnAnalytics_Click(object sender, RoutedEventArgs e)

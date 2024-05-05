@@ -195,10 +195,6 @@ namespace InventoryApp.GUI
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
@@ -299,7 +295,6 @@ namespace InventoryApp.GUI
             return !regex.IsMatch(text);
         }
 
-        
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {

@@ -425,11 +425,6 @@
                 </Button.Style>
             </Button>
 
-
-
-
-
-
             <Border
                 Grid.Row="3"
                 Grid.ColumnSpan="2"
@@ -497,7 +492,6 @@
                             Background="Transparent"
                             BorderBrush="#2f6deb"
                             BorderThickness="5"
-                            Click="Button_Click"
                             Cursor="Hand">
                             <Image
                                 Width="50"
