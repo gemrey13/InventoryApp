@@ -81,11 +81,13 @@ namespace InventoryApp.GUI
             DataTable dt = new DataTable();
             using (SqlConnection connection = _databaseManager.GetConnection())
             {
-                string query = @"SELECT r.ID, i.name, i.brand, i.highlight, i.status AS itemStatus, i.dateAdded, i.cost, i.description, r.status AS requestStatus
-                FROM item i
-                JOIN request r ON i.ID = r.itemID";
+                string query = @"
+                SELECT r.ID, i.name, i.brand, i.highlight, i.status AS itemStatus, i.dateAdded, i.cost, i.description, r.status AS requestStatus, u.username AS requesterUsername
+                FROM request r
+                JOIN item i ON i.ID = r.itemID
+                JOIN user_account u ON u.ID = r.employeeID
+                ";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@UserID", currentUser.ID);
 
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command);

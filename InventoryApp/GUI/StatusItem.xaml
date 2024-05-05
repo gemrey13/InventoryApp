@@ -259,7 +259,8 @@
                 Background="Transparent"
                 BorderBrush="#2f6deb"
                 BorderThickness="5"
-                Cursor="Hand" Click="btnDenied_Click">
+                Click="btnDenied_Click"
+                Cursor="Hand">
                 <Image
                     Width="50"
                     Height="50"
@@ -433,6 +434,11 @@
 
 
                 <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding requesterUsername}"
+                        Header="Requester" />
+
                     <DataGridTextColumn
                         Width="*"
                         Binding="{Binding name}"
