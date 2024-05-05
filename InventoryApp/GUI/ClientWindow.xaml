@@ -170,31 +170,6 @@
                 BorderThickness="5"
                 CornerRadius="30">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <StackPanel Margin="10" Orientation="Horizontal">
-                        <Button
-                            x:Name="btnInventory"
-                            Width="110"
-                            Height="110"
-                            Background="Transparent"
-                            BorderBrush="#2f6deb"
-                            BorderThickness="5"
-                            Click="btnInventory_Click"
-                            Cursor="Hand"
-                            Style="{DynamicResource RoundedButton}">
-                            <Image
-                                Width="80"
-                                Height="80"
-                                Source="../images/inventory.png" />
-                        </Button>
-
-                        <TextBlock
-                            Margin="30,0,0,0"
-                            VerticalAlignment="Center"
-                            FontFamily="Segoe UI Light"
-                            FontSize="50"
-                            Text="Inventory Management" />
-                    </StackPanel>
-
                     <StackPanel
                         Margin="10"
                         VerticalAlignment="Top"
@@ -220,7 +195,7 @@
                             VerticalAlignment="Center"
                             FontFamily="Segoe UI Light"
                             FontSize="50"
-                            Text="Requested items" />
+                            Text="Request item" />
                     </StackPanel>
 
 

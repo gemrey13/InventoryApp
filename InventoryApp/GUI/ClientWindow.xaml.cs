@@ -61,8 +61,8 @@ namespace InventoryApp.GUI
         private void btnRequest_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MessageBox.Show("In the Requested item");
-            Application.Current.Shutdown();
+            RequestItem requestItem = new RequestItem(currentUser);
+            requestItem.Show();
         }
 
 

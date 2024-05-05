@@ -21,18 +21,18 @@ CREATE TABLE item (
     FOREIGN KEY (userID) REFERENCES [user_account](ID)
 );
 
-
 CREATE TABLE request (
     ID INT PRIMARY KEY IDENTITY,
     employeeID INT,
     adminID INT,
+    itemID INT, -- New column to reference the item
     [status] nchar(10),
     description nchar(50),
     creationDate DATETIME,
     FOREIGN KEY (employeeID) REFERENCES [user_account](ID),
-    FOREIGN KEY (adminID) REFERENCES [user_account](ID)
+    FOREIGN KEY (adminID) REFERENCES [user_account](ID),
+    FOREIGN KEY (itemID) REFERENCES item(ID) -- Reference to the item table
 );
-
 CREATE TABLE account_history (
     ID INT PRIMARY KEY IDENTITY,
     userID INT,

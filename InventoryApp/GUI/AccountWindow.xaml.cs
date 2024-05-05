@@ -71,8 +71,6 @@ namespace InventoryApp.GUI
             accountList.ItemsSource = dt.DefaultView;
         }
 
-
-
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {
             string oldPassword = txtOldPassword.Password;
