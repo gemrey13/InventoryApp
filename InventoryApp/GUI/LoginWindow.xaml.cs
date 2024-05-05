@@ -17,34 +17,40 @@ namespace InventoryApp.GUI
             _databaseManager = new DatabaseManager();
             databaseHelper = new DatabaseHelper();
         }
-
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             string username = textUsername.Text;
             string password = pwdPassword.Password;
 
-            if (AuthenticateUser(username, password, out User currentUser))
+            if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
             {
-                if (currentUser.AccountType == 1)
+                if (AuthenticateUser(username, password, out User currentUser))
                 {
-                    mainWindow = new MainWindow(currentUser);
-                    this.Close();
-                    mainWindow.Show();
-                }
-                else if (currentUser.AccountType == 0)
-                {
-                    ClientWindow clientWindow = new ClientWindow(currentUser);
-                    this.Close();
-                    clientWindow.Show();
+                    if (currentUser.AccountType == 1)
+                    {
+                        mainWindow = new MainWindow(currentUser);
+                        this.Close();
+                        mainWindow.Show();
+                    }
+                    else if (currentUser.AccountType == 0)
+                    {
+                        ClientWindow clientWindow = new ClientWindow(currentUser);
+                        this.Close();
+                        clientWindow.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid account type.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Invalid account type.");
+                    MessageBox.Show("Invalid username or password. Please try again.");
                 }
             }
             else
             {
-                MessageBox.Show("Invalid username or password. Please try again.");
+                MessageBox.Show("Please enter both username and password.");
             }
         }
 
@@ -76,12 +82,24 @@ namespace InventoryApp.GUI
                         reader.Close();
                         return true;
                     }
+                    else
+                    {
+                        // No matching account found
+                        user = null;
+                        reader.Close();
+                        return false;
+                    }
                 }
             }
-            user = null;
-            return false;
         }
 
+
+        private void register_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterWindow registerWindow = new RegisterWindow();
+            registerWindow.Show();
+            this.Close();
+        }
     }
 
     public class User
