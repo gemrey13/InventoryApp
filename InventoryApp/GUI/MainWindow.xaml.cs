@@ -68,8 +68,8 @@ namespace InventoryApp
 
         private void btnAnalytics_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("In the Analytics");
-            Application.Current.Shutdown();
+            AnalyticsWindow analyticsWindow = new AnalyticsWindow(currentUser);
+            analyticsWindow.Show();
             this.Close();
         }
 
